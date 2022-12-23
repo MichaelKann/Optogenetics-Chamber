@@ -1,1 +1,101 @@
+/*
 
+*/
+
+int switchState = 0;
+int red_light_pin_1= 2;
+int green_light_pin_1 = 0;
+int blue_light_pin_1 = 1;
+int red_light_pin_2= 6;
+int green_light_pin_2 = 4;
+int blue_light_pin_2 = 5;
+int red_light_pin_3= 10;
+int green_light_pin_3 = 8;
+int blue_light_pin_3 = 9;
+float NumHz_1 = 20; // in units of Hertz variable to store the number of Hz
+// float NumHz_2 = 20;
+float NumTime_1 = 3800000; // Variable to store the length of time, 3,600,000 is one hour
+// float NumTime_2 = 3800000;
+float Delay_1 = (1/NumHz_1)*1000;
+// float Delay_2 = (1/NumHz_2)*1000;
+
+void setup() {
+    pinMode(red_light_pin_1, OUTPUT);
+    pinMode(green_light_pin_1, OUTPUT);
+    pinMode(blue_light_pin_1, OUTPUT);
+    pinMode(red_light_pin_2, OUTPUT);
+    pinMode(green_light_pin_2, OUTPUT);
+    pinMode(blue_light_pin_2, OUTPUT);
+    pinMode(red_light_pin_3, OUTPUT);
+    pinMode(green_light_pin_3, OUTPUT);
+    pinMode(blue_light_pin_3, OUTPUT);
+    pinMode(7, OUTPUT);
+    pinMode(3, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(13,INPUT);
+}
+
+void loop() {
+  
+     switchState = digitalRead(13);
+  
+  
+  if (switchState == 0) {
+      RGB_color_1(0, 0, 0); // No color
+      RGB_color_2(0, 0, 0); // No color
+      RGB_color_3(0, 0, 0); // No color
+      digitalWrite(7, LOW);
+      digitalWrite(3, LOW);
+      digitalWrite(11, LOW);
+  }
+  
+  else {
+    
+      if (millis() < NumTime_1) {
+        digitalWrite(7, HIGH);    // turn each external LED on HIGH
+        digitalWrite(3, HIGH);
+        digitalWrite(11, HIGH);
+        RGB_color_1(0,0,255);    // turn on internal RGB LED, for color to wavelength conversation go to: https://academo.org/demos/wavelength-to-colour-relationship/
+        RGB_color_2(0,0,255);    
+        RGB_color_3(0,0,255);
+        delay(Delay_1);          // wait for delay          
+        digitalWrite(7, LOW);    // turn each external LED off by making voltage LOW
+        digitalWrite(3, LOW);
+        digitalWrite(11, LOW);
+        RGB_color_1(0, 0, 0);    // turn each internal RGB LED off by setting each color to 0
+        RGB_color_2(0, 0, 0);
+        RGB_color_3(0, 0, 0);
+        delay(Delay_1);          // wait for delay
+        } 
+      else {                    // time of experiment has expired
+        digitalWrite(7, LOW);   // turn each external LED off by making voltage LOW
+        digitalWrite(3, LOW);
+        digitalWrite(11, LOW);
+        RGB_color_1(0, 0, 0);  // turn each internal RGB LED off by setting each color to 0
+        RGB_color_2(0, 0, 0);
+        RGB_color_3(0, 0, 0);
+       }
+    
+    }
+}
+
+void RGB_color_1(int red_light_value_1, int green_light_value_1, int blue_light_value_1)   // Function to set RGB LED number 1 to correct color
+ {
+  analogWrite(red_light_pin_1, red_light_value_1);
+  analogWrite(green_light_pin_1, green_light_value_1);
+  analogWrite(blue_light_pin_1, blue_light_value_1);
+ } 
+
+void RGB_color_2(int red_light_value_2, int green_light_value_2, int blue_light_value_2)  // Function to set RGB LED number 2 to correct color
+{
+  analogWrite(red_light_pin_2, red_light_value_2);
+  analogWrite(green_light_pin_2, green_light_value_2);
+  analogWrite(blue_light_pin_2, blue_light_value_2);
+} 
+ 
+void RGB_color_3(int red_light_value_3, int green_light_value_3, int blue_light_value_3)  // Function to set RGB LED number 3 to correct color
+ {
+  analogWrite(red_light_pin_3, red_light_value_3);
+  analogWrite(green_light_pin_3, green_light_value_3);
+  analogWrite(blue_light_pin_3, blue_light_value_3);
+ } 
