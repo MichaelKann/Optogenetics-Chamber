@@ -3,10 +3,10 @@ message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Kann"
   given-names: "Michael"
-  orcid: "https://orcid.org/0000-0000-0000-0000"
+  orcid: "https://orcid.org/0009-0000-6362-2083"
 - family-names: "Ackerman"
   given-names: "Sarah"
-  orcid: "https://orcid.org/0000-0000-0000-0000"
+  orcid: "https://orcid.org/0000-0001-8752-8972"
 title: "Optogenetics-Chamber"
 version: 1.0.0
 doi: 10.5281/zenodo.1234
