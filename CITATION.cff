@@ -5,6 +5,8 @@ authors:
   given-names: "Michael"
   orcid: "https://orcid.org/0009-0000-6362-2083"
 - family-names: "Ackerman"
+  given-names: "Martin"
+- family-names: "Ackerman"
   given-names: "Sarah"
   orcid: "https://orcid.org/0000-0001-8752-8972"
 title: "Optogenetics-Chamber"
